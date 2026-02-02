@@ -1,0 +1,17 @@
+// conversion of decimal number system to octal number system
+#include<stdio.h>
+int main (){
+    int n,rem , place =1 , bin = 0;
+    printf("Enter number ");
+    scanf("%d",&n);
+    int temp = n;
+    while (n != 0) {
+         rem = n % 8;
+        bin = bin + rem * place;
+        place = place * 10;
+        n = n / 8;  
+
+    }
+    printf("the  binary of %d is %d",bin,temp);
+    return 0;
+}
