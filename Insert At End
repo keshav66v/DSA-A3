@@ -3,6 +3,7 @@
 #define MAX 100
 int list[MAX];
 int n= 0;
+
 void insertInBeg(int value){
     if (n ==  MAX){
         printf("List is full !!!\n");
@@ -21,23 +22,22 @@ void insertAtEnd(int value){
     if(n == MAX){
             printf("List is full !!!!\n");
             return ;
-
     }
     list[n++] = value;
     printf("Element inserted !!!!\n");
 }
+
     void displayList(){
         if(n == 0){
             printf("List is empty !!!!\n");
             return ;
-
-    
-    }
+        }
     for(int i=0;i<n; i++){
         printf("%d\t", list[i]);
     }
     printf("\n");
 }
+
 int main (){
     while(1){
         printf("1. Insert IN BEGINNING \n"); 
