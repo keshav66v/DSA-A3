@@ -3,6 +3,7 @@
 #define MAX 100
 int list[MAX];
 int n= 0;
+
 void insertInBeg(int value){
     if (n ==  MAX){
         printf("List is full !!!\n");
@@ -15,6 +16,7 @@ void insertInBeg(int value){
     n ++;
     printf("Elements inserted!!!!\n");
 }
+
 void displayList(){
     if(n == 0){
             printf("List is empty !!!!\n");
@@ -68,6 +70,7 @@ int main (){
              break;
          case 10:
             break;
+        
         default:
             printf("Invalid Choice !!!!\n");
     }
