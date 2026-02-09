@@ -51,6 +51,15 @@ void insertAtPosition(int pos , int value){
         n--;
         printf("Element deleted !!!!\n");
     }
+    void deleteFromEnd(){
+        if(n == 0){
+            printf("List is empty !!!\n");
+            return;
+        }
+        n --;
+        printf("Element deleted !!!!\n");
+    
+    }
     void displayList(){
         if(n == 0){
             printf("List is empty !!!!\n");
@@ -99,14 +108,17 @@ int main (){
             scanf("%d",&data);
             insertAtPosition(pos,data);
             break;
-
-             break;
          case 4:
             deleteFromBeg();
              break;
          case 5:
+         deleteFromEnd();
              break;
          case 6:
+            printf("Enter position : ");
+             scanf("%d",&pos);
+             deleteFromPosition(pos);
+
              break;
          case  7:
          displayList();
