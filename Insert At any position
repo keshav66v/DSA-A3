@@ -3,6 +3,7 @@
 #define MAX 100
 int list[MAX];
 int n= 0;
+
 void insertInBeg(int value){
     if (n ==  MAX){
         printf("List is full !!!\n");
@@ -24,33 +25,37 @@ void insertAtEnd(int value){
 
     }
     list[n++] = value;
-    printf("Element inserted ");
+    printf("Element inserted \n");
 }
+
 void insertAtPosition(int pos , int value){
-    if( pos < 0 ||pos >=n )
-    printf("Element Inserted !!!!\n");
-    else{
-        for(int i = n-1; i>=pos ;i--){
-            list[i + 1] = list[i];
-
-        }
-        list[pos] = value;
-        n++;
-        printf("Element Inserted !!!\n");
+    if (n == MAX) {
+        printf("List is full !!!!\n");
+        return;
     }
+    if (pos < 0 || pos > n) {
+        printf("Invalid position !!!!\n");
+        return;
+    }
+    for (int i = n - 1; i >= pos; i--) {
+        list[i + 1] = list[i];
+    }
+    list[pos] = value;
+    n++;
+    printf("Element Inserted !!!\n");
 }
-    void displayList(){
-        if(n == 0){
-            printf("List is empty !!!!\n");
-            return ;
 
-    
+void displayList(){
+    if(n == 0){
+        printf("List is empty !!!!\n");
+        return ;
     }
     for(int i=0;i<n; i++){
         printf("%d\t", list[i]);
     }
     printf("\n");
 }
+
 int main (){
     while(1){
         printf("1. Insert IN BEGINNING \n"); 
@@ -75,8 +80,7 @@ int main (){
             insertInBeg(data);
             break;
          case 2:
-         printf("Enter Data : ");
-            scanf("%d",&data);
+            printf("Enter Data : ");
             scanf("%d",&data);
             insertAtEnd(data);
             break;
@@ -87,8 +91,6 @@ int main (){
             scanf("%d",&data);
             insertAtPosition(pos,data);
             break;
-
-             break;
          case 4:
              break;
          case 5:
@@ -102,15 +104,11 @@ int main (){
              break;
          case 9:
              break;
-
          case 10:
             break;
-
-        
         default:
             printf("Invalid Choice !!!!\n");
         }
     }
     return 0;
-
 }
