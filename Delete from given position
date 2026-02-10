@@ -69,7 +69,7 @@ void deleteFromPosition(int pos) {
         return;
     }
     for (int i = pos; i < n - 1; i++) {
-        list[i] = list[i + 1];  // shift elements left
+        list[i] = list[i + 1]; 
     }
     n--;
     printf("Element deleted !!!!\n");
