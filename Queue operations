@@ -1,4 +1,5 @@
 #include<stdio.h>
+#define MAX 100
 int queue[MAX], front = -1, rear = -1;
 int isFull(){
     return rear == MAX-1;
@@ -16,7 +17,7 @@ void enqueue(int data){
     front = rear;
     printf("\n%d inserted in queue\n",data);
 }
-void dequeue(){
+int dequeue(){
     if(isEmpty()){
         printf("\nQueue Underflow!!!\n");
         return -1;
@@ -39,7 +40,7 @@ void display(){
         return;
     }
     for(int i =front; i<=rear;i++){
-        printf("%d", queue[i]);
+        printf("%d ", queue[i]);
     }
     printf("\n");
 }
@@ -55,16 +56,32 @@ int main(){
         scanf("%d",&choice);
         switch(choice){
             case 1:
+                printf("Enter value to insert : ");
+                scanf("%d",&value);
+                enqueue(value);
             break;
-            case 2:
-            break;
-            case 3:
-            break
+            case 2:{
+            int deleted = dequeue();
+                if (deleted != -1)
+                    printf("Deleted element: %d\n", deleted);
+                break;
+            }
+            case 3:{
+                int top = peek();
+                if(top != -1)
+                    printf("Front element: %d\n", top);
+                break;
+            }
             case 4:
-            break
+                display();
+            break;
             case 5:
-            break
+                printf("Exiting...\n");
+                return 0;
+            default:
+                printf("Invalid choice!!!\n");
         }
 
     }
+    return 0;
 }
