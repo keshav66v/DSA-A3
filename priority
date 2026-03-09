@@ -13,21 +13,21 @@ int isEmpty(){
 int isFull(){
     return front == MAX -1;
 }
-void enqueue(int data, int periority){
+void enqueue(int data, int priority){
     if(isFull()){
         printf("Queue Overflow!!!\n");
         return;
     }
     rear ++;
     pqueue[rear].data = data;
-    pqueue[rear].priority = periority;
+    pqueue[rear].priority = priority;
     if(front == -1)
         front = rear;
-    printf("Element inserted in periority queue!!!\n");
+    printf("Element inserted in priority queue!!!\n");
 
 
 }
-int getHighestPeriority(){
+int getHighestPriority(){
     int max = pqueue[0].priority,index = 0;
     for(int i=1; i<=rear; i++){
         if(pqueue[i].priority > max){
@@ -49,7 +49,7 @@ int dequeue(){
         return val;
     }
     else{
-    int index = getHighestPeriority();
+    int index = getHighestPriority();
     int val = pqueue[index].data;
     for(int i = index ; i<rear;i++){
         pqueue[i] = pqueue[i+1]; 
@@ -64,7 +64,7 @@ if(isEmpty()){
         return -1;
     }
     else{
-    int index = getHighestPeriority();
+    int index = getHighestPriority();
     int val = pqueue[index].data;
     return val;
     }
@@ -79,7 +79,7 @@ for(int i=0; i<=rear;i++){
     }
 }
 int main(){
-    int choice, value,periority;
+    int choice, value,priority;
     while(1){
         printf("1. Enqueue\n");
         printf("2. Dequeue\n");
@@ -92,14 +92,14 @@ int main(){
             case 1:
                 printf("Enter value: ");
                 scanf("%d", &value);
-                printf("Enter periority: ");
-                scanf("%d", &periority);
-                enqueue(value,periority);
+                printf("Enter priority: ");
+                scanf("%d", &priority);
+                enqueue(value,priority);
                 break;
             case 2:
                 value = dequeue();
                 if (value != -1)
-                printf("%d dequeue from the periority queue!!!\n",value);
+                printf("%d dequeue from the priority queue!!!\n",value);
                 break;
             case 3:
                 value = peek();
