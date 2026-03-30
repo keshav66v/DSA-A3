@@ -14,50 +14,37 @@ struct Node* createNode(int data){
     temp->next = NULL;
     return temp;
 }
-void insertEnd (int data ){
-    struct Node* newNode = createNode (data);
-    if(head == NULL)
-        head = newNode;
-    else{
-        struct Node* temp = head;
-        while(temp->next != NULL){
-            temp = temp ->next;
-        }
-        temp->next = newNode;
-    }
-}
-void display(){
-     if(head == NULL)
-       printf("EMPTY");
-    else{
-        struct Node* temp = head;
-        while(temp != NULL){
-            printf("%d ", temp->data);
-            temp = temp->next;
-}
-    }
-}
+
 int main() {
     int n, val;
     scanf("%d",&n);
+    struct Node* tail = NULL;
     for(int i=0;i<n;i++){
         scanf("%d",&val);
-        insertEnd(val);
+        struct Node* newNode = createNode(val);
+        if(head == NULL)
+            head = newNode;
+        else
+            tail->next = newNode;
+        tail = newNode;
 }
-    if(n==1)
-        head = NULL;
-    else{
-        int mid = n/2;
-        struct Node* temp = head ;
-        int i = 0;
-        while (temp != NULL){
-            if(i == mid-1)
-                break;
-            temp = temp->next;
-            i++;
-}
-    temp->next = temp->next->next;
+    int odd = 0, even = 0;
+    struct Node* temp = head;
+    for(int i =0;i<n;i+=2){
+        if(temp->data > temp ->next ->data)
+            even ++;
+        else if (temp->data < temp ->next ->data)
+            odd++;
+        temp = temp->next->next;
     }
-   display();
+    if(even == odd)
+        printf("Tie");
+    else if (even > odd)
+        printf("Even");
+    else
+        printf("Odd");
+
+
     return 0;
 }
+
