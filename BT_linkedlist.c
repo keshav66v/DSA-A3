@@ -58,6 +58,35 @@ void postOrder(struct Node* root){
     postOrder(root->right);
     printf("%d ",root->data);
 }
+struct Node* search(struct Node* root, int val){
+    if(root == NULL || root->data == val)
+    return root;
+    if(val < root->data)
+    return search(root->left, val);
+    else
+    return search(root->right, val);
+}
+struct Node* delete(struct Node* root, int val){
+    if(root == NULL)
+    return NULL;
+    else if(val > root->data)
+    root->right = delete(root->right, val);
+    else{
+        //zero child
+        if(root->left == NULL && root->right == NULL)
+        return NULL;
+        // one child
+        else if(root->right == NULL)
+        return root->left;
+        //two child
+        else{
+            struct Node* temp = findMin(root->right);
+            root->data = temp->data;
+            root->right = delete(root->right, temp->data);
+        }
+    }
+    return root;
+}
 int main(){
     int choice,value;
     struct Node* root = NULL;
@@ -67,7 +96,9 @@ int main(){
         printf("2. Pre-Order Traversal\n");
         printf("3. In-Order Traversal\n");
         printf("4. Post-Order Traversal\n");
-        printf("5. Exit\n");
+        printf("5. search\n");
+        printf("6.Delete\n");
+        printf("7.Exit\n");
         printf("Enter Choice: ");
         scanf("%d",&choice);
         switch(choice){
@@ -86,6 +117,22 @@ int main(){
                 postOrder(root);
                 break;
             case 5:
+            printf("Enter value: ");
+            scanf("%d", &value);
+            if(search(root,value)==NULL)
+            printf("Element not found!!!\n");
+            else
+            printf("Element found!!!\n");
+            break;
+            case 6:
+            printf("Enter Element To Delete: ");
+            scanf("%d", &value);
+            if(delete(root, value)== NULL)
+            printf("Deleted element not found!!\n");
+            else
+            printf("Element Deleted!!\n");
+            break;
+            case 7:
                 exit(0);
             default:
                 printf("invalid Choice!!!\n");
