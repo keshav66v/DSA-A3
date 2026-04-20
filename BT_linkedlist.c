@@ -14,28 +14,13 @@ struct Node* createNode(int data){
 struct Node* insert(struct Node* root, int data){
     if(root == NULL)
         return createNode(data);
-    else{
-        struct Node* queue[100];
-        int front =-1, rear =-1;
-        queue[++rear] = root;
-        front++;
-        while(front <=rear){
-            struct Node* temp = queue[front++];
-            if(temp->left == NULL){
-                temp->left = createNode(data);
-                break;
-            }
-            else if(temp->right == NULL){
-                temp->right = createNode(data);
-                break;
-            }
-            else{
-                queue[++rear] = temp->left;
-                queue[++rear] = temp->right;
-            }
-        }
-        return root;
-    }
+
+    if(data < root->data)
+        root->left = insert(root->left, data);
+    else
+        root->right = insert(root->right, data);
+
+    return root;
 }
 void preOrder(struct Node* root){
     if(root == NULL)
@@ -57,6 +42,11 @@ void postOrder(struct Node* root){
     postOrder(root->left);
     postOrder(root->right);
     printf("%d ",root->data);
+}
+struct Node* findMin(struct Node* root){
+    while(root->left != NULL)
+        root = root->left;
+    return root;
 }
 struct Node* search(struct Node* root, int val){
     if(root == NULL || root->data == val)
